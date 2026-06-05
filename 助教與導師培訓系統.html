@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潛意識信念校準 · 助教與導師培訓系統</title>
+<link rel="icon" type="image/png" href="linda-logo.png">
+<link rel="shortcut icon" type="image/png" href="linda-logo.png">
+<style>
+  :root{
+    --primary:#048bba;--primary-d:#036e94;--primary-l:#E3F2F8;
+    --accent:#603f3a;--accent-l:#F5EDEB;--accent-d:#3f2826;
+    --bg:#F8FAFB;--card:#FFFFFF;
+    --ink:#1F2528;--text:#3C474E;--muted:#74808A;--line:#E4EBF1;
+    --warn-bg:#FFF8EE;--warn:#C67E13;
+    --shadow:0 6px 24px rgba(4,139,186,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;padding-bottom:60px}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-d) 60%,#024d6a 100%);
+    color:#fff;text-align:center;padding:48px 18px 42px;position:relative;overflow:hidden}
+  header .badge{display:inline-block;font-size:13px;letter-spacing:2px;
+    background:rgba(255,255,255,.15);padding:5px 16px;border-radius:30px;margin-bottom:14px}
+  header h1{font-size:30px;font-weight:800;letter-spacing:1px;margin-top:14px}
+  header p{margin-top:10px;font-size:15px;color:#d5ecf5;font-weight:400}
+  header .logo{display:block;height:70px;width:auto;margin:0 auto 18px;
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,.18))}
+  header .badge{margin-bottom:0}
+
+  .tabs{display:flex;gap:12px;margin:28px 0 22px;flex-wrap:wrap}
+  .tab{flex:1 1 240px;background:var(--card);border:2px solid var(--line);border-radius:14px;
+    padding:18px 16px;cursor:pointer;transition:.2s;text-align:left;box-shadow:var(--shadow)}
+  .tab:hover{border-color:var(--primary);transform:translateY(-2px)}
+  .tab.active{border-color:var(--primary);background:linear-gradient(135deg,#fff,var(--primary-l))}
+  .tab .ic{font-size:24px}
+  .tab .t{font-weight:700;color:var(--ink);font-size:17px;margin-top:6px}
+  .tab.active .t{color:var(--primary-d)}
+  .tab .s{font-size:13px;color:var(--muted);margin-top:2px}
+
+  .card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);
+    padding:26px 24px;margin-bottom:22px;border:1px solid var(--line)}
+  .card h2{color:var(--primary-d);font-size:20px;display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .card h2 .bar{width:5px;height:22px;background:linear-gradient(var(--primary),var(--accent));border-radius:4px}
+  .sub{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+
+  /* 助教職責 三張卡 */
+  .duty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:6px}
+  .duty{border:1.5px solid var(--line);border-radius:14px;padding:18px 16px;background:#fbfdfe;transition:.2s}
+  .duty:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow)}
+  .duty .di{font-size:26px}
+  .duty .dt{font-weight:700;color:var(--ink);font-size:15.5px;margin:8px 0 6px}
+  .duty .dd{font-size:13.5px;color:var(--text);line-height:1.65}
+
+  /* 時間軸 */
+  .timeline{padding-left:6px;margin-top:6px}
+  .tl-item{position:relative;border-left:3px solid var(--primary-l);padding:8px 0 22px 24px;margin-left:8px}
+  .tl-item::before{content:"";position:absolute;left:-9px;top:10px;width:15px;height:15px;
+    border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:0 0 0 2px var(--primary)}
+  .tl-item:last-child{border-left-color:transparent;padding-bottom:0}
+  .tl-when{font-weight:700;color:var(--primary-d);font-size:15px;display:inline-block;
+    background:var(--primary-l);padding:3px 12px;border-radius:20px;margin-bottom:6px}
+  .tl-what{font-size:14.5px;color:var(--text)}
+  .tl-what ul{margin:6px 0 0 18px}
+  .tl-what ul li{margin:3px 0}
+
+  /* CTA */
+  .cta{background:linear-gradient(135deg,var(--accent-l),#faf3f1);border:1.5px dashed var(--accent);
+    border-radius:14px;padding:20px;margin-top:6px;text-align:center}
+  .cta .ct{font-weight:700;color:var(--accent);font-size:16px;margin-bottom:6px}
+  .cta .cd{font-size:14px;color:var(--text);margin-bottom:14px}
+  .cta button{background:var(--accent);color:#fff;border:none;padding:11px 24px;
+    border-radius:30px;font-size:14.5px;font-weight:700;cursor:pointer;transition:.2s;
+    font-family:inherit}
+  .cta button:hover{background:var(--accent-d);transform:translateY(-1px)}
+
+  /* 培訓導師：基本要求 highlight box */
+  .req{background:var(--primary-l);border-left:4px solid var(--primary);border-radius:0 12px 12px 0;
+    padding:16px 18px;margin-top:6px}
+  .req .rh{font-weight:800;color:var(--primary-d);font-size:16px}
+  .req .rh em{font-style:normal;color:var(--accent);font-size:18px;font-weight:800}
+  .req .rd{font-size:13.5px;color:var(--text);margin-top:6px}
+
+  /* 考核項目（純資訊呈現） */
+  .check-list{display:grid;gap:12px;margin-top:6px}
+  .check{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border:1.5px solid var(--line);
+    border-radius:14px;background:var(--primary-l)}
+  .check .num{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;margin-top:2px}
+  .check .ct-block{flex:1}
+  .check .ct{font-size:15px;color:var(--ink);font-weight:600;line-height:1.65}
+  .check .ct em{font-style:normal;color:var(--accent);font-weight:800;font-size:17px}
+  .check .ct-note{font-size:13px;color:var(--accent);font-weight:700;margin-top:6px;
+    background:#fff;display:inline-block;padding:4px 10px;border-radius:20px;border:1px solid var(--accent)}
+  .check .ct-sub{list-style:none;padding:0;margin-top:8px}
+  .check .ct-sub li{font-size:13px;color:var(--text);padding:3px 0 3px 16px;position:relative;line-height:1.55}
+  .check .ct-sub li::before{content:"›";position:absolute;left:4px;top:1px;color:var(--primary);font-weight:800}
+
+  /* 證書流程 */
+  .cert-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:6px}
+  .cert{border-radius:14px;padding:20px 18px;text-align:center;border:2px solid var(--line);position:relative}
+  .cert.digital{background:var(--primary-l);border-color:var(--primary)}
+  .cert.paper{background:var(--accent-l);border-color:var(--accent)}
+  .cert .cstep{font-size:12.5px;font-weight:700;letter-spacing:1px;color:var(--muted);margin-bottom:8px}
+  .cert .ctitle{font-size:17px;font-weight:800;margin-bottom:6px}
+  .cert.digital .ctitle{color:var(--primary-d)}
+  .cert.paper .ctitle{color:var(--accent)}
+  .cert .cdesc{font-size:13.5px;color:var(--text)}
+  .cert .star{position:absolute;top:-10px;right:14px;background:var(--accent);color:#fff;
+    width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:15px;box-shadow:0 4px 10px rgba(96,63,58,.3)}
+  .cert-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--primary);font-weight:800}
+  .cert-foot{margin-top:14px;font-size:13.5px;color:var(--text);background:#fbfdfe;
+    border:1px dashed var(--line);border-radius:10px;padding:12px 14px}
+  .cert-foot strong{color:var(--accent)}
+
+  /* 教學分配表 */
+  table.alloc{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:6px}
+  table.alloc thead th{background:var(--primary);color:#fff;font-weight:600;padding:12px 10px;text-align:left;font-size:13.5px}
+  table.alloc thead th:first-child{border-radius:10px 0 0 0}
+  table.alloc thead th:last-child{border-radius:0 10px 0 0}
+  table.alloc tbody td{padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.alloc tbody tr:hover{background:var(--primary-l)}
+  table.alloc .topic{font-weight:700;color:var(--ink)}
+  table.alloc .who{color:var(--primary-d);font-weight:600}
+  table.alloc .who.linda{color:var(--accent);font-weight:700}
+  .alloc-foot{margin-top:14px;font-size:13.5px;color:var(--text);background:#fbfdfe;
+    border-left:3px solid var(--primary);padding:12px 14px;border-radius:0 10px 10px 0}
+  .alloc-foot strong{color:var(--primary-d)}
+
+  /* 合作模式 兩欄 */
+  .coop{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .coop-col{padding:18px;border-radius:14px;border:1.5px solid var(--line)}
+  .coop-col.free{background:var(--warn-bg);border-color:#E7C58A}
+  .coop-col.flex{background:#fbfdfe}
+  .coop-col h3{font-size:15.5px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .coop-col.free h3{color:var(--warn)}
+  .coop-col.flex h3{color:var(--primary-d)}
+  .coop-col ul{list-style:none;padding:0}
+  .coop-col li{padding:6px 0 6px 22px;position:relative;font-size:14px;color:var(--text)}
+  .coop-col li::before{content:"●";position:absolute;left:4px;top:6px;font-size:10px;color:var(--primary)}
+  .coop-col.free li::before{color:var(--warn)}
+  .coop-col .hi{display:inline-block;background:#fff;border:1.5px solid var(--warn);color:var(--accent);
+    font-weight:800;padding:3px 10px;border-radius:20px;font-size:13px;margin:2px 4px 2px 0}
+
+  /* 段落區隔 */
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .note{font-size:12.5px;color:var(--muted);background:var(--warn-bg);border-left:3px solid var(--warn);
+    padding:11px 14px;border-radius:0 8px 8px 0;margin-top:14px}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:30px;padding:0 18px}
+  footer a{color:var(--primary-d);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media(max-width:640px){
+    header h1{font-size:24px}
+    .cert-flow{grid-template-columns:1fr}
+    .cert-arrow{transform:rotate(90deg);padding:4px 0}
+    .coop{grid-template-columns:1fr}
+    table.alloc thead th,table.alloc tbody td{padding:10px 8px;font-size:13px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="linda-logo-white.png" alt="Linda 洋溢人生潛意識信念專家" class="logo">
+  <div class="badge">潛意識信念校準 · 教學體系</div>
+  <h1>助教與導師培訓系統</h1>
+  <p>從學員到導師的成長路徑 — 一頁看懂職責、考核與合作</p>
+</header>
+
+<div class="wrap">
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-role="ta">
+      <div class="ic">🤝</div>
+      <div class="t">助教</div>
+      <div class="s">課程練習帶領者</div>
+    </div>
+    <div class="tab" data-role="mentor">
+      <div class="ic">🎓</div>
+      <div class="t">培訓導師</div>
+      <div class="s">Linda 學院長期合作對象</div>
+    </div>
+  </div>
+
+  <!-- ===== 助教 panel ===== -->
+  <div class="panel active" id="panel-ta">
+
+    <div class="card">
+      <h2><span class="bar"></span>助教職責</h2>
+      <div class="sub">三件事，是助教在課堂上最關鍵的角色</div>
+      <div class="duty-grid">
+        <div class="duty">
+          <div class="di">✋</div>
+          <div class="dt">適時糾正</div>
+          <div class="dd">學生犯錯時要當下糾正，<strong>不能讓學生一錯再錯</strong>。</div>
+        </div>
+        <div class="duty">
+          <div class="di">🔍</div>
+          <div class="dt">細節確認</div>
+          <div class="dd">練習前先和導師確認步驟、哪些事可以做、哪些不能做、要不要先告知學生。</div>
+        </div>
+        <div class="duty">
+          <div class="di">🎬</div>
+          <div class="dt">帶領示範</div>
+          <div class="dd">依導師指派在課堂上示範特定練習，協助學員理解操作。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="bar"></span>課前準備時間軸</h2>
+      <div class="sub">每堂課的標準節奏，照著走就不會慌</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-when">課前一晚</div>
+          <div class="tl-what">導師<strong>先預告</strong>當日助教要帶的練習，讓助教提前熟悉內容</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">課前 1 小時</div>
+          <div class="tl-what">
+            線上討論當日教學
+            <ul>
+              <li>與助教確認當日<strong>教學內容與流程</strong></li>
+              <li>導師示範助教需帶領的練習</li>
+              <li>助教<strong>實際帶一次</strong>，並<strong>抽一位上來示範講一次</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">課前 15 分鐘</div>
+          <div class="tl-what">助教<strong>提前上線</strong>，調整頻率、進入狀態</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">上課中</div>
+          <div class="tl-what">
+            依分配帶練習
+            <ul>
+              <li>專注觀察學員反應，<strong>立刻糾正</strong>錯誤動作</li>
+              <li>協助導師處理現場狀況</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="bar"></span>下一步：往培訓導師前進</h2>
+      <div class="sub">助教場次是升級培訓導師的必要條件</div>
+      <div class="cta">
+        <div class="ct">擔任學員班助教 ≥ 3 次</div>
+        <div class="cd">這是申請成為培訓導師的硬性條件之一。<br>累積經驗的同時也在累積進入考核的資格。</div>
+        <button onclick="switchTo('mentor')">查看培訓導師完整路徑 →</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== 培訓導師 panel ===== -->
+  <div class="panel" id="panel-mentor">
+
+    <div class="card">
+      <h2><span class="bar"></span>申請基本要求</h2>
+      <div class="sub">沒有達到這個門檻，無法進入考核流程</div>
+      <div class="req">
+        <div class="rh"><em>3 個月內</em>必須上過學員班</div>
+        <div class="rd">首次或復訓皆可。此條件確保培訓導師對課程內容是最新狀態。</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="bar"></span>考核項目</h2>
+      <div class="sub">兩項都要達成才能升等為配合的培訓導師</div>
+      <div class="check-list">
+        <div class="check static">
+          <div class="num">1</div>
+          <div class="ct-block">
+            <div class="ct">課後完成 <em>10 位</em>隱匿信念諮詢（<em>一年內</em>），並繳交<strong>個案記錄報告</strong></div>
+            <div class="ct-note">✓ 完成後頒發紙本【導師證書】＝ 導師班正式證書</div>
+          </div>
+        </div>
+        <div class="check static">
+          <div class="num">2</div>
+          <div class="ct-block">
+            <div class="ct">擔任學員班助教至少 <em>3 次</em>（待通過考核）</div>
+            <div class="ct-note">✓ 通過後升等為「配合的培訓導師」</div>
+            <ul class="ct-sub">
+              <li>課前一晚：導師預告助教當日要帶的練習</li>
+              <li>當日演練：實際帶一次、抽一位上來示範講一次</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cert-foot" style="margin-top:14px">
+        🔁 通過考核後成為培訓導師，仍需<strong>每年重新考核、重新簽約</strong>。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="bar"></span>證書取得流程</h2>
+      <div class="sub">兩階段認證 — 完成導師班拿數位證書，通過考核拿紙本證書</div>
+      <div class="cert-flow">
+        <div class="cert digital">
+          <div class="cstep">STEP 1</div>
+          <div class="ctitle">完成導師班</div>
+          <div class="cdesc">頒發數位<br><strong>【準導師證書】</strong></div>
+        </div>
+        <div class="cert-arrow">→</div>
+        <div class="cert paper">
+          <div class="star">★</div>
+          <div class="cstep">STEP 2</div>
+          <div class="ctitle">通過考核</div>
+          <div class="cdesc">頒發紙本<br><strong>【導師證書】</strong></div>
+        </div>
+      </div>
+      <div class="cert-foot">
+        通過考核後，可申請成為<strong>培訓導師</strong>，需<strong>每年重新考核與簽約</strong>，
+        確保教學品質與課程同步更新。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="bar"></span>教學分配 — 誰帶什麼</h2>
+      <div class="sub">初期 Linda 主帶核心主題，其他逐步開放給培訓導師</div>
+      <table class="alloc">
+        <thead>
+          <tr><th>主題 / 環節</th><th>帶領者</th><th>備註</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="topic">八大主題</td><td class="who linda">Linda 親自帶領</td><td>初期規劃，核心內容</td></tr>
+          <tr><td class="topic">隱匿信念</td><td class="who">助教可帶領</td><td>已開放</td></tr>
+          <tr><td class="topic">惡性阻塞</td><td class="who linda">Linda 親自處理</td><td>未來可能開放合格培訓導師</td></tr>
+          <tr><td class="topic">其他練習</td><td class="who">培訓導師協助</td><td>由 Linda 指派</td></tr>
+        </tbody>
+      </table>
+      <div class="alloc-foot">
+        <strong>長期目標：</strong>培養出導師後，Linda 僅出現在<strong>特定環節</strong>（可預先規劃，
+        避免需要常常出現），讓教學體系能長期、穩定運作。
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="bar"></span>合作模式與費用</h2>
+      <div class="sub">免費名額是有條件的，合作方式則保留彈性</div>
+      <div class="coop">
+        <div class="coop-col free">
+          <h3>💰 免費名額條件</h3>
+          <div style="margin-bottom:8px;font-size:14px;color:var(--text)">以下任一條件先達成，即停止免費：</div>
+          <ul>
+            <li><span class="hi">2026 年底前</span></li>
+            <li><span class="hi">培養出 3 位導師</span></li>
+          </ul>
+          <div style="font-size:12.5px;color:var(--warn);margin-top:8px;font-weight:700">
+            ⚠ 以先達成要件者為準
+          </div>
+        </div>
+        <div class="coop-col flex">
+          <h3>🤝 合作彈性</h3>
+          <ul>
+            <li>可選擇<strong>獨立教學</strong></li>
+            <li>或加入 <strong>Linda 學院培訓導師</strong></li>
+            <li>透過考核標準篩選長期合作對象</li>
+            <li>培訓導師每年重新考核與簽約</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    ⚠ 本頁為制度說明摘要，實際考核細則、合作條件與名額狀態，請以 Linda 學院官方公告或合約為準。
+  </div>
+
+  <footer>
+    此工具版權屬於
+    <a href="https://www.instagram.com/linda_hsyh" target="_blank" rel="noopener">「Linda 洋溢人生潛意識信念專家」</a>
+    所有
+  </footer>
+
+</div>
+
+<script>
+function switchTo(role){
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.role===role);
+  });
+  document.querySelectorAll('.panel').forEach(p=>{
+    p.classList.toggle('active', p.id==='panel-'+role);
+  });
+  window.scrollTo({top:document.querySelector('.tabs').offsetTop - 12, behavior:'smooth'});
+}
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>switchTo(t.dataset.role));
+});
+</script>
+
+</body>
+</html>
